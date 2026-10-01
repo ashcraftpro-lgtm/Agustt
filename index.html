@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Para ti 💗</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="sunflower-bg" aria-hidden="true">
+    <span class="sf sf1">🌻</span>
+    <span class="sf sf2">🌻</span>
+    <span class="sf sf3">🌻</span>
+    <span class="sf sf4">🌻</span>
+    <span class="sf sf5">🌻</span>
+    <span class="sf sf6">🌻</span>
+    <span class="sf sf7">🌻</span>
+    <span class="sf sf8">🌻</span>
+  </div>
+  <canvas id="particles"></canvas>
+
+  <!-- Pantalla 1: imagen-botón -->
+  <section id="intro" class="screen active">
+    <div class="intro-card glass">
+      <button id="startBtn" class="image-button" aria-label="Abrir dedicatoria">
+        <img src="assets/imagen1.png" alt="Imagen 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';" />
+        <span class="image-fallback">IMAGEN 1<br><small>reemplázala en assets/imagen1.jpg</small></span>
+      </button>
+      <h1>Tengo algo para ti :3…</h1>
+      <p>Toca la imagen 💗</p>
+    </div>
+  </section>
+
+  <!-- Pantalla 2: introducción al juego -->
+  <section id="mission" class="screen">
+    <div class="content-card glass">
+      <span class="eyebrow">Una pequeña misión</span>
+      <h2>Antes de llegar al final…</h2>
+      <p>Hay <strong>6 corazones</strong> escondidos en el laberinto. Cada uno guarda un pequeño recuerdo.</p>
+      <div class="instructions retro-instructions">
+        <div class="retro-panel">
+          <div class="retro-title">💻 MODO PC</div>
+          <div class="retro-keys">
+            <span class="keycap">↑</span>
+            <span class="keycap">←</span>
+            <span class="keycap">↓</span>
+            <span class="keycap">→</span>
+            <span class="plus">+</span>
+            <span class="keycap space-key">ESPACIO</span>
+          </div>
+          <div class="retro-desc">Muévete con las flechas y recoge el corazón con ESPACIO.</div>
+        </div>
+        <div class="retro-panel">
+          <div class="retro-title">📱 MODO CELULAR</div>
+          <div class="retro-keys">
+            <span class="keycap">▲</span>
+            <span class="keycap">◀</span>
+            <span class="keycap">▼</span>
+            <span class="keycap">▶</span>
+            <span class="plus">+</span>
+            <span class="keycap heart-key">💗</span>
+          </div>
+          <div class="retro-desc">Usa los controles táctiles y toca el corazón cuando estés cerca.</div>
+        </div>
+      </div>
+      <button class="primary" id="playBtn">Entrar al laberinto</button>
+    </div>
+  </section>
+
+  <!-- Pantalla 3: laberinto -->
+  <section id="game" class="screen">
+    <div class="game-shell">
+      <header class="game-header glass">
+        <div>
+          <span class="eyebrow">Nuestro pequeño recorrido</span>
+          <h2>Laberinto de recuerdos</h2>
+        </div>
+        <div class="counter">💗 <span id="heartCount">0</span>/6</div>
+      </header>
+
+      <div class="maze-wrap glass">
+        <div id="maze" class="maze" aria-label="Laberinto"></div>
+        <div id="gameToast" class="game-toast">Encuentra el primer corazón 💗</div>
+      </div>
+
+      <div class="mobile-controls" aria-label="Controles móviles">
+        <button data-move="up" class="ctrl up">▲</button>
+        <button data-move="left" class="ctrl left">◀</button>
+        <button data-action="collect" class="ctrl heart-btn">💗</button>
+        <button data-move="right" class="ctrl right">▶</button>
+        <button data-move="down" class="ctrl down">▼</button>
+      </div>
+
+      <p class="desktop-hint">Flechas para moverte · ESPACIO para recoger un corazón cercano</p>
+    </div>
+  </section>
+
+  <!-- Pantalla 4: meta -->
+  <section id="goal" class="screen">
+    <div class="content-card glass center">
+      <div class="big-heart">💗</div>
+      <h2>Llegaste a la meta…</h2>
+      <p class="strong-line">Aunque en realidad, la meta siempre fuiste tú.</p>
+      <button class="primary letter-call-btn" id="openLetterBtn">✉️ Abrir mi carta</button>
+    </div>
+  </section>
+
+  <!-- Pantalla 5: carta animada -->
+  <section id="letter" class="screen">
+    <div class="letter-stage">
+      <div id="envelopeIntro" class="envelope-intro glass">
+        <span class="eyebrow">Tengo algo más para ti</span>
+        <h2>Hay una carta esperando 💛</h2>
+        <p>Toca el sobre para abrirla.</p>
+
+        <button id="envelopeBtn" class="envelope-button" aria-label="Abrir carta">
+          <div class="envelope">
+            <div class="envelope-back"></div>
+            <div class="envelope-paper-preview">
+              <span>Para ti 💛</span>
+            </div>
+            <div class="envelope-front-left"></div>
+            <div class="envelope-front-right"></div>
+            <div class="envelope-front-bottom"></div>
+            <div class="envelope-flap"></div>
+            <div class="envelope-seal">🌻</div>
+          </div>
+          <span class="tap-envelope">TOCA PARA ABRIR</span>
+        </button>
+      </div>
+
+      <div id="animatedLetter" class="letter-paper animated-letter">
+        <span class="eyebrow">Para ti</span>
+        <h2>01 de Octubre No seras espectadora :3</h2>
+        <p>
+          Hoy solo quería recordarte algo sencillo: contigo, hasta lo más normal se vuelve recuerdo.
+          Gracias por tu risa, por tu paciencia aunque te hago renegar JAJAJAJ y por cada pequeño momento que me regalas.
+        </p>
+        <p>
+          No quise dejarte sin  nada asi que te hice esto :33 con mis propias manos para que no sea espectadora
+          Lo hago con mucho cariño por que haces que cualquier dia se vuelva bueno con tu presencia.
+        </p>
+        <p>
+          yo en ti veo y admiro muchas como tu belleza inteligencia y talento en canto y baile sobre todo el gran corazon que tienes eres my girl :3
+        </p>
+        <p class="signature">Con  muchisimo cariño, de mi para ti 💗</p>
+        <button class="primary" id="photosBtn">MY girl</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pantalla 6: tendedero -->
+  <section id="photos" class="screen">
+    <div class="photos-content">
+      <span class="eyebrow">Un pequeño tendedero de tus fotos</span>
+      <h2>para apreciar todas tus cualidades</h2>
+
+      <div class="clothesline">
+        <div class="rope"></div>
+
+        <button class="photo-card p1" data-caption="Tienes unos ojos que hipnotizan y te hacen olvidar de todo.">
+          <span class="pin"></span>
+          <img src="assets/foto1.jpg" alt="Foto 1" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/>
+          <span class="photo-fallback">FOTO 1</span>
+        </button>
+
+        <button class="photo-card p2" data-caption="Tu risa siempre va a ser mi favorita porque trasmites tranquilidad .">
+          <span class="pin"></span>
+          <img src="assets/foto2.jpg" alt="Foto 2" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/>
+          <span class="photo-fallback">FOTO 2</span>
+        </button>
+
+        <button class="photo-card p3" data-caption="tu cabello siempre lo vere suave con ganas de acariciarlo -w-.">
+          <span class="pin"></span>
+          <img src="assets/foto3.jpg" alt="Foto 3" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/>
+          <span class="photo-fallback">FOTO 3</span>
+        </button>
+
+        <button class="photo-card p4" data-caption="oir cara audio tuyo hasta de explicar tus dias son de lo mejor.">
+          <span class="pin"></span>
+          <img src="assets/foto4.jpg" alt="Foto 4" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/>
+          <span class="photo-fallback">FOTO 4</span>
+        </button>
+
+        <button class="photo-card p5" data-caption="Me encanta el corazon que tienes por eso no quiero verte triste :c.">
+          <span class="pin"></span>
+          <img src="assets/foto5.jpg" alt="Foto 5" onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';"/>
+          <span class="photo-fallback">FOTO 5</span>
+        </button>
+      </div>
+
+      <div id="photoCaption" class="caption glass">Toca una foto para ver su mensaje ✨</div>
+      <button class="primary" id="finalBtn">Continuar</button>
+    </div>
+  </section>
+
+  <!-- Pantalla 7: final -->
+  <section id="final" class="screen">
+    <div class="content-card glass center">
+      <div class="mini-stars">✦ ✧ ✦</div>
+      <h2>¿Quieres seguir aguantandome mas?</h2>
+      <button id="yesBtn" class="yes-btn">Sí 💗</button>
+      <p id="finalMessage" class="final-message"></p>
+    </div>
+
+    <button id="secretHeart" class="secret-heart" aria-label="Mensaje secreto">♡</button>
+    <div id="secretMessage" class="secret-message glass">
+      Sabía que lo ibas a encontrar darling. yanotecelare:> tam 💗
+    </div>
+  </section>
+
+  <audio id="music" loop preload="none">
+    <source src="assets/musica.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
